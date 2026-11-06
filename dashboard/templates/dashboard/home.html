@@ -1,0 +1,393 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="manifest" href="/static/manifest.json?v=2">
+<meta name="theme-color" content="#172554">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart College Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f6fb;
+            color: #263247;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            background: #172554;
+            color: white;
+            padding: 25px 18px;
+            flex-shrink: 0;
+        }
+
+        .brand {
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+
+        .brand span {
+            color: #60a5fa;
+        }
+
+        .menu-title {
+            color: #9caed0;
+            font-size: 12px;
+            margin: 25px 10px 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-item {
+            display: block;
+            color: #dbeafe;
+            padding: 13px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            border-radius: 8px;
+        }
+
+        .menu-item.active,
+        .menu-item:hover {
+            background: #2563eb;
+            color: white;
+        }
+
+        /* MAIN CONTENT */
+
+        .main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .topbar {
+            background: white;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .topbar h2 {
+            font-size: 21px;
+        }
+
+        .user-info {
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        .user-info strong {
+            color: #1d4ed8;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .welcome {
+            background: linear-gradient(120deg, #1d4ed8, #4338ca);
+            color: white;
+            padding: 30px;
+            border-radius: 14px;
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .welcome p {
+            color: #dbeafe;
+        }
+
+        .section-heading {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        /* STATISTICS CARDS */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 23px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+            border-left: 5px solid #2563eb;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+        }
+
+        .card .icon {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .card .number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #172554;
+        }
+
+        .card:nth-child(2) {
+            border-color: #16a34a;
+        }
+
+        .card:nth-child(3) {
+            border-color: #9333ea;
+        }
+
+        .card:nth-child(4) {
+            border-color: #ea580c;
+        }
+
+        .card:nth-child(5) {
+            border-color: #0891b2;
+        }
+
+        .card:nth-child(6) {
+            border-color: #db2777;
+        }
+
+        .bottom-section {
+            background: white;
+            padding: 25px;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+        }
+
+        .bottom-section h3 {
+            margin-bottom: 12px;
+        }
+
+        .bottom-section p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        .logout-button {
+            background: #dc2626;
+            border: none;
+            padding: 10px 18px;
+            color: white;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .logout-button:hover {
+            background: #b91c1c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 900px) {
+            .cards {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .layout {
+                display: block;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .topbar {
+                padding: 18px;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            .content {
+                padding: 18px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            SMART <span>COLLEGE</span><br>
+            MANAGEMENT
+        </div>
+
+        <div class="menu-title">Main Menu</div>
+
+        <a href="/" class="menu-item active">
+            🏠 Dashboard
+        </a>
+
+        <a href="/admin/" class="menu-item">
+            👨‍💼 Admin Panel
+        </a>
+
+        <div class="menu-title">Account</div>
+
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">
+                ↪ Logout
+            </button>
+        </form>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <h2>Dashboard Overview</h2>
+
+            <div class="user-info">
+                <strong>{{ request.user.username }}</strong><br>
+                <small>{{ role }}</small>
+            </div>
+
+        </header>
+
+        <section class="content">
+
+            <div class="welcome">
+                <h1>Welcome to Smart College Management System!</h1>
+                <p>Manage your college activities from one central dashboard.</p>
+            </div>
+
+            <h2 class="section-heading">College Statistics</h2>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="icon">🎓</div>
+                    <h3>Total Students</h3>
+                    <div class="number">{{ total_students }}</div>
+                </div>
+
+                <div class="card">
+                    <div class="icon">👨‍🏫</div>
+                    <h3>Total Faculty</h3>
+                    <div class="number">{{ total_faculty }}</div>
+                </div>
+
+                <div class="card">
+                    <div class="icon">📚</div>
+                    <h3>Total Subjects</h3>
+                    <div class="number">{{ total_subjects }}</div>
+                </div>
+
+                <div class="card">
+                    <div class="icon">📅</div>
+                    <h3>Attendance Records</h3>
+                    <div class="number">{{ total_attendance }}</div>
+                </div>
+
+                <div class="card">
+                    <div class="icon">📝</div>
+                    <h3>Total Examinations</h3>
+                    <div class="number">{{ total_examinations }}</div>
+                </div>
+
+                <div class="card">
+                    <div class="icon">📊</div>
+                    <h3>Marks Records</h3>
+                    <div class="number">{{ total_marks }}</div>
+                </div>
+
+            </div>
+
+            <div class="bottom-section">
+                <h3>College Management System</h3>
+                <p>
+                    This system helps manage student information, faculty
+                    records, academic subjects, attendance, examinations
+                    and student results in a centralized platform.
+                </p>
+            </div>
+
+        </section>
+
+        <footer>
+            © 2026 Smart College Management System | All Rights Reserved
+        </footer>
+
+    </main>
+
+</div>
+
+</body>
+</html>
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("/static/service-worker.js")
+            .then(function () {
+                console.log("PWA service worker registered");
+            })
+            .catch(function (error) {
+                console.error("PWA registration failed:", error);
+            });
+    });
+}
+</script>

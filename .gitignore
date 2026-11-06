@@ -1,0 +1,33 @@
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.venv/
+
+# Django local files
+db.sqlite3
+db.sqlite3-journal
+
+# Secret environment variables
+.env
+.env.*
+
+# Collected static files
+staticfiles/
+
+# Uploaded media files
+media/
+
+# IDE settings
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Local icon source files
+school.png
